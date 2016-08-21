@@ -6,13 +6,20 @@ package com.pawegio.blackcat.domain
 
 interface SearchResult {
     val id: Long
-    val name: String
 }
 
-data class User(
+data class UserResult(
         override val id: Long,
-        override val name: String) : SearchResult
+        val login: String) : SearchResult
 
-data class Repository(
+data class RepositoryResult(
         override val id: Long,
-        override val name: String) : SearchResult
+        val name: String) : SearchResult
+
+data class UserDetails(
+        val id: Long,
+        val login: String,
+        val name: String,
+        val avatarUrl: String?,
+        val followersCount: Int,
+        val starredCount: Int)

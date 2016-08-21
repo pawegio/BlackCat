@@ -1,7 +1,7 @@
 package com.pawegio.blackcat.contract
 
 import com.pawegio.blackcat.domain.SearchResult
-import com.pawegio.blackcat.domain.User
+import com.pawegio.blackcat.domain.UserResult
 
 /**
  * @author pawegio
@@ -23,6 +23,6 @@ interface SearchContract {
 
         fun searchResults(query: String)
 
-        fun openUserDetails(user: User)
+        fun openUserDetails(user: UserResult)
     }
 }

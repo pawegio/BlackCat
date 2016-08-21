@@ -3,6 +3,7 @@ package com.pawegio.blackcat.ui
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.pawegio.blackcat.contract.UserDetailsContract
+import com.pawegio.blackcat.domain.UserDetails
 import com.pawegio.blackcat.presenter.UserDetailsPresenter
 
 /**
@@ -16,7 +17,7 @@ class UserDetailsActivity : AppCompatActivity(), UserDetailsContract.View {
         super.onCreate(savedInstanceState)
     }
 
-    override fun updateUserDetails(avatarUrl: String?, starredCount: Int, followersCount: Int) {
+    override fun updateUserDetails(userDetails: UserDetails) {
 
     }
 }

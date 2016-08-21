@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_search.*
  */
 class SearchActivity : AppCompatActivity(), SearchContract.View {
 
-    private val presenter by lazy { SearchPresenter(this) }
+//    private val presenter by lazy { SearchPresenter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

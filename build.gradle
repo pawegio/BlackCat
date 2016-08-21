@@ -28,4 +28,6 @@ ext {
     supportLibraryVersion = '24.1.1'
     junitVersion = '4.12'
     kandroidVersion = '0.6.7'
+    rxjavaVersion = '1.1.9'
+    mockitoVersion = '1.10.19'
 }
