@@ -1,4 +1,10 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+repositories {
+    mavenCentral()
+}
 
 android {
     compileSdkVersion 24
@@ -17,12 +23,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 dependencies {
     // app dependencies
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.kotlinVersion"
     compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.supportLibraryVersion"
+    compile "com.pawegio.kandroid:kandroid:${rootProject.kandroidVersion}@aar"
 
     // unit tests dependencies
     testCompile "junit:junit:$rootProject.junitVersion"
