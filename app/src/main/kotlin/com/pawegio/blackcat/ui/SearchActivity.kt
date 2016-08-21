@@ -5,12 +5,17 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.pawegio.blackcat.R
+import com.pawegio.blackcat.contract.SearchContract
+import com.pawegio.blackcat.domain.SearchResult
+import com.pawegio.blackcat.presenter.SearchPresenter
 import kotlinx.android.synthetic.main.activity_search.*
 
 /**
  * @author pawegio
  */
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity(), SearchContract.View {
+
+    private val presenter by lazy { SearchPresenter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,5 +33,21 @@ class SearchActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun showProgressBar() {
+
+    }
+
+    override fun hideProgressBar() {
+
+    }
+
+    override fun showResults(results: List<SearchResult>) {
+
+    }
+
+    override fun showUserDetails(username: String) {
+
     }
 }
