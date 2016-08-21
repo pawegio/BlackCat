@@ -11,7 +11,7 @@ import com.pawegio.blackcat.presenter.UserDetailsPresenter
  */
 class UserDetailsActivity : AppCompatActivity(), UserDetailsContract.View {
 
-    private val presenter by lazy { UserDetailsPresenter(this) }
+//    private val presenter by lazy { UserDetailsPresenter(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
