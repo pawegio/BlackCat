@@ -5,10 +5,11 @@ import com.pawegio.blackcat.domain.Repository
 import com.pawegio.blackcat.domain.RepositoryResult
 import com.pawegio.blackcat.domain.SearchResult
 import com.pawegio.blackcat.domain.UserResult
+import com.pawegio.blackcat.mock
+import com.pawegio.blackcat.mockRxSchedulers
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Matchers.anyString
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import rx.Observable
@@ -28,6 +29,7 @@ class SearchPresenterTest {
         repository = mock()
         view = mock()
         presenter = SearchPresenter(view, repository)
+        mockRxSchedulers()
     }
 
     @Test
@@ -92,6 +94,4 @@ class SearchPresenterTest {
 
         verify(view).showUserDetails(user.login)
     }
-
-    inline fun <reified T : Any> mock(): T = Mockito.mock(T::class.java)
 }

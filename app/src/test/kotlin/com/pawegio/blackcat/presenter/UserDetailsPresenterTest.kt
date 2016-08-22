@@ -3,10 +3,11 @@ package com.pawegio.blackcat.presenter
 import com.pawegio.blackcat.contract.UserDetailsContract
 import com.pawegio.blackcat.domain.Repository
 import com.pawegio.blackcat.domain.UserDetails
+import com.pawegio.blackcat.mock
+import com.pawegio.blackcat.mockRxSchedulers
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Matchers.*
-import org.mockito.Mockito
+import org.mockito.Matchers.anyString
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.verify
 import rx.Observable
@@ -26,6 +27,7 @@ class UserDetailsPresenterTest {
         repository = mock()
         view = mock()
         presenter = UserDetailsPresenter(view, repository)
+        mockRxSchedulers()
     }
 
     @Test
@@ -38,6 +40,4 @@ class UserDetailsPresenterTest {
 
         verify(view).updateUserDetails(userDetails)
     }
-
-    inline fun <reified T : Any> mock(): T = Mockito.mock(T::class.java)
 }
