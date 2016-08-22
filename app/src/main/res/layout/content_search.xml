@@ -7,7 +7,7 @@
     android:background="@android:color/white"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.SearchActivity"
+    tools:context=".ui.activity.SearchActivity"
     tools:showIn="@layout/activity_search">
 
     <ProgressBar
