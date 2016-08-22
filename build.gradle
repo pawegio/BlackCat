@@ -25,11 +25,14 @@ task clean(type: Delete) {
 }
 
 ext {
-    supportLibraryVersion = '24.1.1'
+    supportLibraryVersion = '23.1.1'
     junitVersion = '4.12'
     kandroidVersion = '0.6.7'
     rxjavaVersion = '1.1.9'
     rxandroidVersion = '1.2.1'
     mockitoVersion = '1.10.19'
     retrofitVersion = '2.1.0'
+    runnerVersion = '0.5'
+    rulesVersion = '0.5'
+    espressoVersion = '2.2.2'
 }
