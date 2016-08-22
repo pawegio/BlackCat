@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.pawegio.blackcat.R
 import com.pawegio.blackcat.contract.SearchContract
+import com.pawegio.blackcat.domain.RetrofitRepository
 import com.pawegio.blackcat.domain.SearchResult
 import com.pawegio.blackcat.presenter.SearchPresenter
 import kotlinx.android.synthetic.main.activity_search.*
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_search.*
  */
 class SearchActivity : AppCompatActivity(), SearchContract.View {
 
-//    private val presenter by lazy { SearchPresenter(this) }
+    private val presenter by lazy { SearchPresenter(this, RetrofitRepository()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

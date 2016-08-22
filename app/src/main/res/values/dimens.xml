@@ -1,4 +1,5 @@
 <resources>
-    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="app_bar_height">104dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="avatar_size">72dp</dimen>
 </resources>
