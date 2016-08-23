@@ -45,7 +45,6 @@ class UserDetailsActivity : AppCompatActivity(), UserDetailsContract.View {
                 nameView.text = name
                 usernameView.text = "($username)"
             }
-            usernameView.text = if (name.isNullOrBlank()) username else "($username)"
             followersView.text = "Followers: $followers"
             starredView.text = "Starred: $starredCount"
             if (avatarUrl != null) {
