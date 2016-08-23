@@ -3,7 +3,6 @@ package com.pawegio.blackcat.presenter
 import com.pawegio.blackcat.contract.SearchContract
 import com.pawegio.blackcat.domain.Repository
 import com.pawegio.blackcat.domain.UserResult
-import com.pawegio.kandroid.e
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
@@ -26,7 +25,7 @@ class SearchPresenter(private val view: SearchContract.View,
                         },
                         { error ->
                             view.hideProgressBar()
-                            view.showResultsPlaceholder(parseErrorMessage(error.message))
+                            view.showResultsPlaceholder(parseErrorMessage(error.message), withButton = true)
                         }
                 )
     }

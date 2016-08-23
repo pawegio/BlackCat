@@ -16,7 +16,7 @@ interface SearchContract {
 
         fun showResults(results: List<SearchResult>)
 
-        fun showResultsPlaceholder(message: String)
+        fun showResultsPlaceholder(message: String, withButton: Boolean = false)
 
         fun showUserDetails(username: String)
     }

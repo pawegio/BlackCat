@@ -51,10 +51,17 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
                 .subscribe {
                     presenter.searchResults(it)
                 }
+
+        tryAgainButton.setOnClickListener {
+            val query = searchView.query
+            if (TextUtils.getTrimmedLength(query) >= 3) {
+                presenter.searchResults(query.toString())
+            }
+        }
     }
 
     override fun showProgressBar() {
-        resultsPlaceholder.visibility = View.GONE
+        hidePlaceholder()
         progressBar.visibility = View.VISIBLE
     }
 
@@ -63,19 +70,25 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
     }
 
     override fun showResults(results: List<SearchResult>) {
-        resultsPlaceholder.visibility = View.GONE
+        hidePlaceholder()
         resultsAdapter.updateData(results)
     }
 
-    override fun showResultsPlaceholder(message: String) {
+    override fun showResultsPlaceholder(message: String, withButton: Boolean) {
         resultsAdapter.clearData()
         resultsPlaceholder.text = message
         resultsPlaceholder.visibility = View.VISIBLE
+        tryAgainButton.visibility = if (withButton) View.VISIBLE else View.GONE
     }
 
     override fun showUserDetails(username: String) {
         startActivity(IntentFor<UserDetailsActivity>(this).apply {
             putExtra(UserDetailsActivity.KEY_USERNAME, username)
         })
+    }
+
+    private fun hidePlaceholder() {
+        resultsPlaceholder.visibility = View.GONE
+        tryAgainButton.visibility = View.GONE
     }
 }
