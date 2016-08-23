@@ -2,6 +2,7 @@ package com.pawegio.blackcat.ui.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.bumptech.glide.Glide
 import com.pawegio.blackcat.R
 import com.pawegio.blackcat.contract.UserDetailsContract
@@ -37,8 +38,14 @@ class UserDetailsActivity : AppCompatActivity(), UserDetailsContract.View {
 
     override fun updateUserDetails(userDetails: UserDetails) {
         with(userDetails) {
-            nameView.text = name
-            usernameView.text = "($username)"
+            if (name.isNullOrBlank()) {
+                nameView.visibility = View.GONE
+                usernameView.text = username
+            } else {
+                nameView.text = name
+                usernameView.text = "($username)"
+            }
+            usernameView.text = if (name.isNullOrBlank()) username else "($username)"
             followersView.text = "Followers: $followers"
             starredView.text = "Starred: $starredCount"
             if (avatarUrl != null) {
