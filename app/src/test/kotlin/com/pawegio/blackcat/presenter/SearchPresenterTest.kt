@@ -42,7 +42,7 @@ class SearchPresenterTest {
 
         verify(view).showProgressBar()
         verify(view).hideProgressBar()
-        verify(view).showResults(results)
+        verify(view).showResultsPlaceholder("No results")
     }
 
     @Test
