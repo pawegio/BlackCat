@@ -45,6 +45,7 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.retrofitVersion"
+    compile "com.github.bumptech.glide:glide:$rootProject.glideVersion"
 
     // unit tests dependencies
     testCompile "junit:junit:$rootProject.junitVersion"

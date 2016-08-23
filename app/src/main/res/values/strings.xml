@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">BlackCat</string>
+    <string name="user_details">User details</string>
     <string name="action_settings">Settings</string>
     <string name="search">Search</string>
 </resources>
