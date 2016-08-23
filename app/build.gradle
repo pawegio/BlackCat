@@ -40,6 +40,8 @@ dependencies {
     compile "com.pawegio.kandroid:kandroid:${rootProject.kandroidVersion}@aar"
     compile "io.reactivex:rxjava:$rootProject.rxjavaVersion"
     compile "io.reactivex:rxandroid:$rootProject.rxandroidVersion"
+    compile "com.jakewharton.rxbinding:rxbinding:$rootProject.rxbindingVersion"
+    compile "com.jakewharton.rxbinding:rxbinding-kotlin:$rootProject.rxbindingVersion"
     compile "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.retrofitVersion"

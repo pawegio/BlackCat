@@ -21,6 +21,9 @@ class SearchPresenter(private val view: SearchContract.View,
                             view.showResults(results)
                         },
                         { error ->
+                            view.hideProgressBar()
+                            view.showResults(emptyList())
+                            //TODO: show error
                             e(error.message.toString())
                         }
                 )

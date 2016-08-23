@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_result.view.*
 /**
  * @author pawegio
  */
-class ResultsAdapter(val onClick: (SearchResult) -> Unit) : RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
+class ResultsAdapter(val onClick: (UserResult) -> Unit) : RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
 
     private val data = mutableListOf<SearchResult>()
 
@@ -33,7 +33,7 @@ class ResultsAdapter(val onClick: (SearchResult) -> Unit) : RecyclerView.Adapter
         notifyDataSetChanged()
     }
 
-    class ViewHolder(val view: View, val onClick: (SearchResult) -> Unit) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, val onClick: (UserResult) -> Unit) : RecyclerView.ViewHolder(view) {
 
         fun bindItem(item: SearchResult) {
             with(itemView) {
