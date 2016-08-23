@@ -37,7 +37,7 @@ class SearchActivityTest {
     companion object {
         @BeforeClass @JvmStatic
         fun setUp() {
-            RepositoryProvider.testRespository = TestRepository
+            RepositoryProvider.testRepository = TestRepository
         }
     }
 
