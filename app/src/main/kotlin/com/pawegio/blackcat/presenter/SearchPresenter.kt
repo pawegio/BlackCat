@@ -18,18 +18,28 @@ class SearchPresenter(private val view: SearchContract.View,
                 .subscribe(
                         { results ->
                             view.hideProgressBar()
-                            view.showResults(results)
+                            if (results.isNotEmpty()) {
+                                view.showResults(results)
+                            } else {
+                                view.showResultsPlaceholder("No results")
+                            }
                         },
                         { error ->
                             view.hideProgressBar()
-                            view.showResults(emptyList())
-                            //TODO: show error
-                            e(error.message.toString())
+                            view.showResultsPlaceholder(parseErrorMessage(error.message))
                         }
                 )
     }
 
     override fun openUserDetails(user: UserResult) {
         view.showUserDetails(user.login)
+    }
+
+    private fun parseErrorMessage(errorMessage: String?): String {
+        return if (errorMessage?.contains("403") ?: false) {
+            "GitHub API rate limit exceeded. Hold on :-)"
+        } else {
+            "Unknown error occurred :-("
+        }
     }
 }

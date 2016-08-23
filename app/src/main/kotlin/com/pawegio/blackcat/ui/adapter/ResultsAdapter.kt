@@ -33,6 +33,11 @@ class ResultsAdapter(val onClick: (UserResult) -> Unit) : RecyclerView.Adapter<R
         notifyDataSetChanged()
     }
 
+    fun clearData() {
+        data.clear()
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(val view: View, val onClick: (UserResult) -> Unit) : RecyclerView.ViewHolder(view) {
 
         fun bindItem(item: SearchResult) {

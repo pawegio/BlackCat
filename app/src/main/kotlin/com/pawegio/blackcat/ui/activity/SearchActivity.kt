@@ -41,16 +41,20 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
 
         searchView.queryTextChanges()
                 .debounce(500, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext {
+                    resultsAdapter.clearData()
+                }
                 .filter { TextUtils.getTrimmedLength(it) >= 3 }
                 .map { it.toString() }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    resultsAdapter.updateData(emptyList())
                     presenter.searchResults(it)
                 }
     }
 
     override fun showProgressBar() {
+        resultsPlaceholder.visibility = View.GONE
         progressBar.visibility = View.VISIBLE
     }
 
@@ -59,7 +63,14 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
     }
 
     override fun showResults(results: List<SearchResult>) {
+        resultsPlaceholder.visibility = View.GONE
         resultsAdapter.updateData(results)
+    }
+
+    override fun showResultsPlaceholder(message: String) {
+        resultsAdapter.clearData()
+        resultsPlaceholder.text = message
+        resultsPlaceholder.visibility = View.VISIBLE
     }
 
     override fun showUserDetails(username: String) {
