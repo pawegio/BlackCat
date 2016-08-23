@@ -45,7 +45,7 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
                 .doOnNext {
                     resultsAdapter.clearData()
                 }
-                .filter { TextUtils.getTrimmedLength(it) >= 3 }
+                .filter { it.isNotBlank() }
                 .map { it.toString() }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
@@ -54,7 +54,7 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
 
         tryAgainButton.setOnClickListener {
             val query = searchView.query
-            if (TextUtils.getTrimmedLength(query) >= 3) {
+            if (query.isNotBlank()) {
                 presenter.searchResults(query.toString())
             }
         }
