@@ -23,8 +23,12 @@ class RetrofitRepository : Repository {
 
     private fun parseStarredCount(response: Response<JsonArray>): Int {
         val link = response.headers().get("Link")
-        val begin = link.lastIndexOf("page") + 5
-        val end = link.lastIndexOf(">")
-        return link.substring(begin, end).toInt()
+        if (link != null) {
+            val begin = link.lastIndexOf("page") + 5
+            val end = link.lastIndexOf(">")
+            return link.substring(begin, end).toInt()
+        } else {
+            return 0
+        }
     }
 }

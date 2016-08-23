@@ -21,6 +21,7 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Before
+import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -32,13 +33,15 @@ import org.junit.runner.RunWith
 @LargeTest
 class SearchActivityTest {
 
+    companion object {
+        @BeforeClass @JvmStatic
+        fun setUp() {
+            GitHubRetrofit.testService = TestGitHubApiService
+        }
+    }
+
     @Rule @JvmField
     val activityRule: ActivityTestRule<SearchActivity> = ActivityTestRule(SearchActivity::class.java)
-
-    @Before
-    fun setUp() {
-        GitHubRetrofit.testService = TestGitHubApiService
-    }
 
     @Test
     fun testShowResultsOnSearch() {

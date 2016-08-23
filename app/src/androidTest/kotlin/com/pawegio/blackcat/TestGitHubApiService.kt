@@ -23,7 +23,7 @@ object TestGitHubApiService : GitHubApiService {
     }
 
     override fun getUser(username: String): Observable<UserDetails> {
-        return Observable.just(UserDetails(1, username, "John Doe", "http://avatar.ar", 5, 7))
+        return Observable.just(UserDetails(1, username, "John Doe", "http://avatar.ar", 5, null))
     }
 
     override fun getStarredRepositoriesByUser(username: String): Observable<Response<JsonArray>> {
