@@ -15,10 +15,5 @@ object GitHubRetrofit {
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .build()
 
-    val retrofitService: GitHubApiService by lazy { retrofit.create(GitHubApiService::class.java) }
-
-    var testService: GitHubApiService? = null
-
-    val service: GitHubApiService
-        get() = testService ?: retrofitService
+    val service: GitHubApiService by lazy { retrofit.create(GitHubApiService::class.java) }
 }

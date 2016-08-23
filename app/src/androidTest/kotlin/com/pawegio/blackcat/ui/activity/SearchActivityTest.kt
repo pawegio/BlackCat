@@ -13,8 +13,9 @@ import android.support.test.runner.AndroidJUnit4
 import android.test.suitebuilder.annotation.LargeTest
 import android.view.View
 import com.pawegio.blackcat.R
-import com.pawegio.blackcat.TestGitHubApiService
+import com.pawegio.blackcat.TestRepository
 import com.pawegio.blackcat.domain.GitHubRetrofit
+import com.pawegio.blackcat.domain.RepositoryProvider
 import com.pawegio.blackcat.waitAtLeast
 import org.hamcrest.CoreMatchers
 import org.hamcrest.Description
@@ -36,7 +37,7 @@ class SearchActivityTest {
     companion object {
         @BeforeClass @JvmStatic
         fun setUp() {
-            GitHubRetrofit.testService = TestGitHubApiService
+            RepositoryProvider.testRespository = TestRepository
         }
     }
 

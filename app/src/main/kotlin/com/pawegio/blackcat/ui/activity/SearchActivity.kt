@@ -8,7 +8,7 @@ import android.view.View
 import com.jakewharton.rxbinding.widget.queryTextChanges
 import com.pawegio.blackcat.R
 import com.pawegio.blackcat.contract.SearchContract
-import com.pawegio.blackcat.domain.RetrofitRepository
+import com.pawegio.blackcat.domain.RepositoryProvider
 import com.pawegio.blackcat.domain.SearchResult
 import com.pawegio.blackcat.presenter.SearchPresenter
 import com.pawegio.blackcat.ui.adapter.ResultsAdapter
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
  */
 class SearchActivity : AppCompatActivity(), SearchContract.View {
 
-    private val presenter by lazy { SearchPresenter(this, RetrofitRepository()) }
+    private val presenter by lazy { SearchPresenter(this, RepositoryProvider.repository) }
     private val resultsAdapter by lazy { ResultsAdapter { presenter.openUserDetails(it) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {

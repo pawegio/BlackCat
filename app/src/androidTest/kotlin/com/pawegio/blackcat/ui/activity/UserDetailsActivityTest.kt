@@ -10,8 +10,9 @@ import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.test.suitebuilder.annotation.LargeTest
-import com.pawegio.blackcat.TestGitHubApiService
+import com.pawegio.blackcat.TestRepository
 import com.pawegio.blackcat.domain.GitHubRetrofit
+import com.pawegio.blackcat.domain.RepositoryProvider
 import com.pawegio.blackcat.waitAtLeast
 import com.pawegio.kandroid.IntentFor
 import org.junit.BeforeClass
@@ -29,7 +30,7 @@ class UserDetailsActivityTest {
     companion object {
         @BeforeClass @JvmStatic
         fun setUp() {
-            GitHubRetrofit.testService = TestGitHubApiService
+            RepositoryProvider.testRespository = TestRepository
         }
     }
 

@@ -6,6 +6,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.pawegio.blackcat.R
 import com.pawegio.blackcat.contract.UserDetailsContract
+import com.pawegio.blackcat.domain.RepositoryProvider
 import com.pawegio.blackcat.domain.RetrofitRepository
 import com.pawegio.blackcat.domain.UserDetails
 import com.pawegio.blackcat.presenter.UserDetailsPresenter
@@ -21,7 +22,7 @@ class UserDetailsActivity : AppCompatActivity(), UserDetailsContract.View {
         const val KEY_USERNAME = "username"
     }
 
-    private val presenter by lazy { UserDetailsPresenter(this, RetrofitRepository()) }
+    private val presenter by lazy { UserDetailsPresenter(this, RepositoryProvider.repository) }
     private val username by lazy { intent.extras.getString(KEY_USERNAME) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
