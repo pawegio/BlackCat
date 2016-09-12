@@ -28,7 +28,8 @@ class SearchPresenterTest {
     fun setUp() {
         repository = mock()
         view = mock()
-        presenter = SearchPresenter(view, repository)
+        presenter = SearchPresenter(repository)
+        presenter.takeView(view)
         mockRxSchedulers()
     }
 

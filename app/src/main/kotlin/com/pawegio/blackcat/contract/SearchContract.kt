@@ -2,6 +2,7 @@ package com.pawegio.blackcat.contract
 
 import com.pawegio.blackcat.domain.SearchResult
 import com.pawegio.blackcat.domain.UserResult
+import com.pawegio.blackcat.presenter.BasePresenter
 
 /**
  * @author pawegio
@@ -21,7 +22,7 @@ interface SearchContract {
         fun showUserDetails(username: String)
     }
 
-    interface Presenter {
+    interface Presenter : BasePresenter<View> {
 
         fun searchResults(query: String)
 

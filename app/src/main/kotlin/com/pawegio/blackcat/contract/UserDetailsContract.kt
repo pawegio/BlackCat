@@ -1,6 +1,7 @@
 package com.pawegio.blackcat.contract
 
 import com.pawegio.blackcat.domain.UserDetails
+import com.pawegio.blackcat.presenter.BasePresenter
 
 /**
  * @author pawegio
@@ -12,7 +13,7 @@ interface UserDetailsContract {
         fun updateUserDetails(userDetails: UserDetails)
     }
 
-    interface Presenter {
+    interface Presenter : BasePresenter<View> {
 
         fun loadUserDetails(username: String)
     }

@@ -26,7 +26,8 @@ class UserDetailsPresenterTest {
     fun setUp() {
         repository = mock()
         view = mock()
-        presenter = UserDetailsPresenter(view, repository)
+        presenter = UserDetailsPresenter(repository)
+        presenter.takeView(view)
         mockRxSchedulers()
     }
 

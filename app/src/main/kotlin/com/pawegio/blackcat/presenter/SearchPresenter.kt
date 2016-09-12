@@ -5,33 +5,43 @@ import com.pawegio.blackcat.domain.Repository
 import com.pawegio.blackcat.domain.UserResult
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import rx.subscriptions.CompositeSubscription
 
-class SearchPresenter(private val view: SearchContract.View,
-                      private val repository: Repository) : SearchContract.Presenter {
+class SearchPresenter(private val repository: Repository) : SearchContract.Presenter {
+
+    override var view: SearchContract.View? = null
+
+    private val compositeSubscription = CompositeSubscription()
+
+    override fun dropView() {
+        super.dropView()
+        compositeSubscription.unsubscribe()
+    }
 
     override fun searchResults(query: String) {
-        view.showProgressBar()
-        repository.getSearchResults(query)
+        view?.showProgressBar()
+        val subscription = repository.getSearchResults(query)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { results ->
-                            view.hideProgressBar()
+                            view?.hideProgressBar()
                             if (results.isNotEmpty()) {
-                                view.showResults(results)
+                                view?.showResults(results)
                             } else {
-                                view.showResultsPlaceholder("No results")
+                                view?.showResultsPlaceholder("No results")
                             }
                         },
                         { error ->
-                            view.hideProgressBar()
-                            view.showResultsPlaceholder(parseErrorMessage(error.message), withButton = true)
+                            view?.hideProgressBar()
+                            view?.showResultsPlaceholder(parseErrorMessage(error.message), withButton = true)
                         }
                 )
+        compositeSubscription.add(subscription)
     }
 
     override fun openUserDetails(user: UserResult) {
-        view.showUserDetails(user.login)
+        view?.showUserDetails(user.login)
     }
 
     private fun parseErrorMessage(errorMessage: String?): String {

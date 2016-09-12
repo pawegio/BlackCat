@@ -3,7 +3,6 @@ package com.pawegio.blackcat.ui.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.text.TextUtils
 import android.view.View
 import com.jakewharton.rxbinding.widget.queryTextChanges
 import com.pawegio.blackcat.R
@@ -24,18 +23,19 @@ import java.util.concurrent.TimeUnit
  */
 class SearchActivity : AppCompatActivity(), SearchContract.View {
 
-    private val presenter by lazy { SearchPresenter(this, RepositoryProvider.repository) }
+    private val presenter by lazy { SearchPresenter(RepositoryProvider.repository) }
     private val resultsAdapter by lazy { ResultsAdapter { presenter.openUserDetails(it) } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+        presenter.takeView(this)
         setSupportActionBar(toolbar)
 
         recyclerView.apply {
             adapter = resultsAdapter
-            layoutManager = LinearLayoutManager(this@SearchActivity)
-            addItemDecoration(DividerItemDecoration(this@SearchActivity))
+            layoutManager = LinearLayoutManager(context)
+            addItemDecoration(DividerItemDecoration(context))
             setHasFixedSize(true)
         }
 
@@ -58,6 +58,11 @@ class SearchActivity : AppCompatActivity(), SearchContract.View {
                 presenter.searchResults(query.toString())
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.dropView()
     }
 
     override fun showProgressBar() {

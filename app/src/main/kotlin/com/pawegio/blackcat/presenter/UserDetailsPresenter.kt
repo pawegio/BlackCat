@@ -5,21 +5,31 @@ import com.pawegio.blackcat.domain.Repository
 import com.pawegio.kandroid.e
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import rx.subscriptions.CompositeSubscription
 
-class UserDetailsPresenter(private val view: UserDetailsContract.View,
-                           private val repository: Repository) : UserDetailsContract.Presenter {
+class UserDetailsPresenter(private val repository: Repository) : UserDetailsContract.Presenter {
+
+    override var view: UserDetailsContract.View? = null
+
+    private val compositeSubscription = CompositeSubscription()
+
+    override fun dropView() {
+        super.dropView()
+        compositeSubscription.unsubscribe()
+    }
 
     override fun loadUserDetails(username: String) {
-        repository.getUserDetails(username)
+        val subscription = repository.getUserDetails(username)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { userDetails ->
-                            view.updateUserDetails(userDetails)
+                            view?.updateUserDetails(userDetails)
                         },
                         { error ->
                             e(error.message.toString())
                         }
                 )
+        compositeSubscription.add(subscription)
     }
 }
